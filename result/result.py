@@ -76,7 +76,7 @@ class resultC:
                 self.var_name.set(row[0])
                 self.var_course.set(row[1])
             else:
-                messagebox.showerror("Error","No record found.")
+                messagebox.showerror("Error","No record found.",parent=self.root)
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to {str(ex)}")  
 
@@ -85,7 +85,7 @@ class resultC:
         con=sqlite3.connect(database="result.db")
         cur=con.cursor()
         try:
-            if self.var_roll.get()=="":
+            if self.var_roll.get()=="Select":
                 messagebox.showerror("Error"," Select a student.",parent=self.root)
             else:
                 cur.execute("select * from result where rollno=? AND course=?",(self.var_roll.get(),self.var_course.get(),))
